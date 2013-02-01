@@ -1,0 +1,21 @@
+<h1>ULTIMATE LIST OF GREAT BANDS!</h1>
+  <% @bands.each do |band| %>
+    <h3><%= link_to band.name, band_path(band) %><h3>
+      <ul>
+        <% band.songs.each do |song| %>
+        <li>
+          <%= song.name %>
+        </li>
+        <% end %>
+      </ul>
+  <% end %>
+
+<%= form_for @band do |f| %>
+<%= f.label :name, "Create Freaky Band" %>
+<%= f.text_field :name %>
+<%= f.file_field(:photo) %>
+
+<%= f.submit %>
+<% end %>
+<br/>
+<%= link_to "<< Back to THE ULTIMATE BAND LIST", root_path %><br>

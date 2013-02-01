@@ -1,0 +1,7 @@
+
+<h1>Songs</h1>
+  <% @songs.each do |song| %>
+    <h3><%= song.name %><h3>
+  <% end %>
+<br/>
+<%= link_to "<< Back to THE ULTIMATE BAND LIST", root_path %><br>

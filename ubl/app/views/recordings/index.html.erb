@@ -1,0 +1,12 @@
+
+<h1>Recordings</h1>
+  <% @recordings.each do |recording| %>
+  <% band = Band.find(recording.band_id) %>
+  <% song = Song.find(recording.song_id) %>
+
+ <h3><%= song.name %> by <%= band.name %><h3>
+
+  <% end %>
+
+<br/>
+<%= link_to "<< Back to THE ULTIMATE BAND LIST", root_path %><br>

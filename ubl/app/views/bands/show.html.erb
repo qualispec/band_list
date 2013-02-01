@@ -1,0 +1,42 @@
+
+<h1><%= @band.name %></h1>
+<% unless @band.photo.blank? %>
+<%= image_tag band_photo_url(@band) %>
+<% end %>
+<h3>Recordings:</h3>
+<ol>
+<% @band.songs.each do |song| %>
+  <li><%= song.name %>
+  <%= button_to "delete", recording_path(song, :band_id => @band.id), method: :delete, confirm: "Really delete the song?" %></li>
+<% end %>
+</ol>
+<h3>Artists in the band</h3>
+<ol>
+<% @band.artists.each do |artist| %>
+  <li><%= artist.name %></li>
+  <% end %>
+</ol>
+
+<h5>Add a Song!</h5>
+<%= form_tag("/songs", :method => :post) do %>
+
+<%= label_tag(:song) %>
+<%= text_field_tag 'song' %>
+<%= hidden_field_tag(:band_id, @band.id) %>
+<%= submit_tag %>
+<% end %>
+
+<h5>Add an Artist!</h5>
+<%= form_tag("/bands/#{@band.id}", :method => :put) do %>
+
+<%= label_tag(:artist) %>
+<% artist_array = Artist.all.map { |artist| [artist.name, artist.id] } %>
+<%= select_tag(:artist_id, options_for_select(artist_array)) %>
+
+
+<%= hidden_field_tag(:band_id, @band.id) %>
+<%= submit_tag %>
+<% end %>
+
+<%= link_to "<< Back to bands", bands_path %><br>
+

@@ -1,0 +1,14 @@
+
+<h1>Artists</h1>
+  <% @artists.each do |artist| %>
+    <h3><%= link_to artist.name, artist_path(artist) %><h3>
+      <ul>
+        <% artist.songs.each do |song| %>
+        <li>
+          <%= song.name %>
+        </li>
+        <% end %>
+      </ul>
+  <% end %>
+<br/>
+<%= link_to "<< Back to THE ULTIMATE BAND LIST", root_path %><br>
